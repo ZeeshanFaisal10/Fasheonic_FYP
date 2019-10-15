@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "800191221631",
+    "firebase_url": "https://fasheonic-11012z.firebaseio.com",
+    "project_id": "fasheonic-11012z",
+    "storage_bucket": "fasheonic-11012z.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800191221631:android:77fd122e8658462773d44a",
+        "android_client_info": {
+          "package_name": "com.example.fasheonic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "800191221631-190q1cha8e75hkssihpd77j2dccjapr6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBls927ueW2_wbw7b4Q4Tmf14ct36eW1kI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "800191221631-190q1cha8e75hkssihpd77j2dccjapr6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
