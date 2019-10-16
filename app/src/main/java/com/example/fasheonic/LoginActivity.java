@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             if (user.isEmailVerified()) {
                             Toast.makeText(LoginActivity.this, "welcome.",
                                     Toast.LENGTH_SHORT).show();
-                                Intent intent=new Intent(LoginActivity.this,LogSign.class);
+                                Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
                                 intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
                                 finish();

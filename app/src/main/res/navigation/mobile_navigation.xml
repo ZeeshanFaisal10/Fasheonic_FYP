@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.fasheonic.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_uploadorder"
+        android:name="com.example.fasheonic.ui.uploadorder.UploadOrderFragment"
+        android:label="@string/menu_uploadorder"
+        tools:layout="@layout/fragment_upload_order" />
+
+    <fragment
+        android:id="@+id/nav_myorder"
+        android:name="com.example.fasheonic.ui.myorderbids.MyOrderBidsFragment"
+        android:label="@string/menu_myorderbids"
+        tools:layout="@layout/fragment_myorderbids" />
+
+    <fragment
+        android:id="@+id/nav_mywishlist"
+        android:name="com.example.fasheonic.ui.mywishlist.MyWishlistFragment"
+        android:label="@string/menu_mywishlist"
+        tools:layout="@layout/fragment_mywishlist" />
+
+    <fragment
+        android:id="@+id/nav_chat"
+        android:name="com.example.fasheonic.ui.chat.ChatFragment"
+        android:label="@string/menu_chat"
+        tools:layout="@layout/fragment_chat" />
+
+    <fragment
+        android:id="@+id/nav_paymentmethod"
+        android:name="com.example.fasheonic.ui.paymentmethod.PaymentMethodFragment"
+        android:label="@string/menu_payment"
+        tools:layout="@layout/fragment_paymentmethod" />
+</navigation>
