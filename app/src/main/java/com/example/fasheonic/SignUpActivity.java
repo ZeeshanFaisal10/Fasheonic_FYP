@@ -123,10 +123,9 @@ public void saveUserProfileData(){
         if(isNetworkAvailable()){
             RegisterUser();
         }else {
-            Toast.makeText(this,"no internet connection!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"No internet connection!",Toast.LENGTH_SHORT).show();
 
         }
-
 
         }
         if(view == logintext){
