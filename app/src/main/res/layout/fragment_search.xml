@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?android:attr/windowBackground"
+    android:orientation="vertical"
+    tools:context=".ui.Search.SearchFragment">
+
+
+    <!--    <com.google.android.material.appbar.AppBarLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:id="@+id/bar"-->
+    <!--        android:background="?android:attr/windowBackground">-->
+
+    <!--        <androidx.appcompat.widget.Toolbar-->
+
+    <!--            android:id="@+id/toolbar"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content">-->
+    <!--            android:background="?android:attr/windowBackground"-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/search_icon"/>
+
+
+        <EditText
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:inputType="text"
+            android:hint="@string/search_here"
+            android:id="@+id/search_bar2"
+            android:layout_marginStart="10dp"
+            />
+
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="2dp"
+            android:layout_marginStart="8dp"
+
+            android:src="@drawable/close" />
+    </LinearLayout>
+
+    <!--        </androidx.appcompat.widget.Toolbar>-->
+
+    <!--    </com.google.android.material.appbar.AppBarLayout>-->
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/bar"/>
+    <!--        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" -->
+</LinearLayout>

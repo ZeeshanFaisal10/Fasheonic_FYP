@@ -74,9 +74,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
                             if (user.isEmailVerified()) {
-                            Toast.makeText(LoginActivity.this, "welcome.",
+                            Toast.makeText(LoginActivity.this, "Welcome."+user_email.getText(),
                                     Toast.LENGTH_SHORT).show();
+
                                 Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
+
                                 intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
                                 finish();
@@ -111,7 +113,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         }
         if(view == forget_pass){
-            Toast.makeText(this,"Check your mail for Recovery link!",Toast.LENGTH_SHORT).show();
+            Intent intent=new Intent(LoginActivity.this,ForgetActivity.class);
+            startActivity(intent);
+            //Toast.makeText(this,"Check your mail for Recovery link!",Toast.LENGTH_SHORT).show();
         }
     }
 

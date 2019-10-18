@@ -29,15 +29,15 @@
             android:icon="@drawable/ic_chat"
             android:title="Chat" />
 
-        <item
-            android:id="@+id/nav_paymentmethod"
-            android:icon="@drawable/ic_payment"
-            android:title="Payment Method" />
+<!--        <item-->
+<!--            android:id="@+id/nav_paymentmethod"-->
+<!--            android:icon="@drawable/ic_payment"-->
+<!--            android:title="Payment Method" />-->
 
-        <item
-            android:id="@+id/nav_traceorder"
-            android:icon="@drawable/trace"
-            android:title="Trace Order" />
+<!--        <item-->
+<!--            android:id="@+id/nav_traceorder"-->
+<!--            android:icon="@drawable/trace"-->
+<!--            android:title="Trace Order" />-->
 
         <item
             android:id="@+id/nav_history"

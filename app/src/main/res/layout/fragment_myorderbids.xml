@@ -2,22 +2,323 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="@android:color/darker_gray"
     android:layout_gravity="center"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/text_slideshow"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:text="SlideShow"
-        android:paddingTop="16dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/headingColor">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:padding="4dp"
+                    android:src="@drawable/order1" />
+
+                <TextView
+                    android:id="@+id/textViewTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_toRightOf="@id/imageView"
+                    android:gravity="center_vertical"
+                    android:text="Order ID: 1011234"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:elevation="2dp"
+            app:cardCornerRadius="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_account_circle_black_24dp" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="2dp"
+                        android:text="Sana Safinaz"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="55dp"
+                        android:layout_marginTop="0dp"
+                        android:text="Bid: PKR.6000"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:layout_width="73dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="60dp"
+                        android:background="@drawable/shapes_bg"
+                        android:text="Accept"
+                        android:textAllCaps="false"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:layout_width="73dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="1dp"
+                        android:background="@drawable/shapes_bg"
+                        android:text="Refuse"
+                        android:textAllCaps="false"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_account_circle_black_24dp" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="2dp"
+                        android:text="Farah Wardrobe"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="55dp"
+                        android:layout_marginTop="0dp"
+                        android:text="Bid: PKR.7000"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:layout_width="73dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="60dp"
+                        android:background="@drawable/shapes_bg"
+                        android:text="Accept"
+                        android:textAllCaps="false"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:layout_width="73dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="1dp"
+                        android:background="@drawable/shapes_bg"
+                        android:text="Refuse"
+                        android:textAllCaps="false"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:cardBackgroundColor="@color/headingColor">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp">
+
+                <ImageView
+                    android:id="@+id/order_img2"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:padding="4dp"
+                    android:src="@drawable/order1" />
+
+                <TextView
+                    android:id="@+id/Order2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_toRightOf="@id/order_img2"
+                    android:gravity="center_vertical"
+                    android:text="Order ID: 111238"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:elevation="2dp"
+            app:cardCornerRadius="10dp">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_account_circle_black_24dp" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="2dp"
+                        android:text="Marwa Clothing"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="55dp"
+                        android:layout_marginTop="0dp"
+                        android:text="Bid: PKR.6000"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:layout_width="73dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="60dp"
+                        android:background="@drawable/shapes_bg"
+                        android:text="Accept"
+                        android:textAllCaps="false"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:layout_width="73dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="1dp"
+                        android:background="@drawable/shapes_bg"
+                        android:text="Refuse"
+                        android:textAllCaps="false"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

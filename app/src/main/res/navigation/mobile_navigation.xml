@@ -28,6 +28,16 @@
         android:name="com.example.fasheonic.ui.mywishlist.MyWishlistFragment"
         android:label="@string/menu_mywishlist"
         tools:layout="@layout/fragment_mywishlist" />
+    <fragment
+    android:id="@+id/nav_history"
+    android:name="com.example.fasheonic.ui.history.HistoryFragment"
+    android:label="History"
+    tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.example.fasheonic.ui.Profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/nav_chat"
@@ -40,4 +50,14 @@
         android:name="com.example.fasheonic.ui.paymentmethod.PaymentMethodFragment"
         android:label="@string/menu_payment"
         tools:layout="@layout/fragment_paymentmethod" />
+
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.example.fasheonic.ui.Logout.LogoutFragment"
+        android:label="Logout"
+        tools:layout="@layout/fragment_logout" />
+
+
+
+
 </navigation>
