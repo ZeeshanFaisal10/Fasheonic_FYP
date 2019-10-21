@@ -2,8 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="wrap_content">
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="3dp"
+    >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,12 +21,12 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
-                android:id="@+id/image_profile"
+                android:id="@+id/image_profileA"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/username"
+                android:id="@+id/usernameAS"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
@@ -37,7 +41,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/post_image"
+            android:id="@+id/post_imageA"
             />
 
         <RelativeLayout
@@ -48,19 +52,19 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:id="@+id/like"
+                android:id="@+id/likeA"
                 android:src="@drawable/like"/>
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:id="@+id/comment"
+                android:id="@+id/commentA"
                 android:src="@drawable/comment"
-                android:layout_toEndOf="@+id/like"
+                android:layout_toEndOf="@+id/likeA"
                 android:layout_marginStart="10dp"/>
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:id="@+id/save"
+                android:id="@+id/saveA"
                 android:src="@drawable/purchase"
                 android:layout_alignParentEnd="true"/>
 
@@ -71,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:textStyle="bold"
-            android:id="@+id/Likes"
+            android:id="@+id/LikesA"
             android:textColor="@color/black"/>
 
         <TextView
@@ -79,14 +83,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:textStyle="bold"
-            android:id="@+id/publisher"
+            android:id="@+id/publisherA"
             android:textColor="@color/black"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:id="@+id/description"
+            android:id="@+id/descriptionA"
             android:textColor="@color/black"/>
 
         <TextView
@@ -96,9 +100,9 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:text="view all 10 comments"
-            android:id="@+id/comments"
+            android:id="@+id/commentsA"
             android:textColor="@color/grey"/>
     </LinearLayout>
-
+</androidx.cardview.widget.CardView>
 
 </RelativeLayout>

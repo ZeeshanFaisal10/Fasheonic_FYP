@@ -8,6 +8,19 @@
     android:background="@drawable/splashh"
     tools:context=".LoginActivity">
 
+    <ImageView
+        android:id="@+id/backtosignup"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/backicon"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="300dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
     <EditText
         android:id="@+id/email_u"
         android:layout_width="314dp"

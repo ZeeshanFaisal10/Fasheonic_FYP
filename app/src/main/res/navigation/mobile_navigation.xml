@@ -11,11 +11,11 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
-    <fragment
-        android:id="@+id/nav_uploadorder"
-        android:name="com.example.fasheonic.ui.uploadorder.UploadOrderFragment"
-        android:label="@string/menu_uploadorder"
-        tools:layout="@layout/fragment_upload_order" />
+<!--    <fragment-->
+<!--        android:id="@+id/nav_uploadorder"-->
+<!--        android:name="com.example.fasheonic.ui.uploadorder.UploadOrderFragment"-->
+<!--        android:label="@string/menu_uploadorder"-->
+<!--        tools:layout="@layout/fragment_upload_order" />-->
 
     <fragment
         android:id="@+id/nav_myorder"

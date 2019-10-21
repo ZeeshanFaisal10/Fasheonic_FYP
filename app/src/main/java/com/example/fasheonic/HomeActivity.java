@@ -5,16 +5,23 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.fasheonic.ui.Search.SearchFragment;
+import com.example.fasheonic.ui.Profile.ProfileFragment;
+import com.example.fasheonic.ui.chat.ChatFragment;
+import com.example.fasheonic.ui.history.HistoryFragment;
+import com.example.fasheonic.ui.home.HomeFragment;
+import com.example.fasheonic.ui.myorderbids.MyOrderBidsFragment;
+import com.example.fasheonic.ui.mywishlist.MyWishlistFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
@@ -25,20 +32,28 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class HomeActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
-
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     FirebaseUser currentUser;
     FirebaseAuth mAuth;
+    public static String u_name ="";
+    FirebaseDatabase mdatabase;
+    DrawerLayout drawer;
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -49,13 +64,9 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //initialze
-
         mAuth=FirebaseAuth.getInstance();
         currentUser=mAuth.getCurrentUser();
-
-
-
+        mdatabase = FirebaseDatabase.getInstance();
 //        FloatingActionButton fab = findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -64,21 +75,28 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
 //                        .setAction("Action", null).show();
 //            }
 //        });
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        updateNavHeader();
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.+
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
 
-                R.id.nav_home, R.id.nav_uploadorder, R.id.nav_myorder,
-                R.id.nav_mywishlist, R.id.nav_chat, R.id.nav_history, R.id.nav_settings, R.id.nav_logout)
-                .setDrawerLayout(drawer)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
+        updateNavHeader();
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        navigationView.setNavigationItemSelectedListener(this);
+        toggle.syncState();
+
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+//        mAppBarConfiguration = new AppBarConfiguration.Builder(
+//                R.id.nav_home, R.id.nav_uploadorder, R.id.nav_myorder,
+//                R.id.nav_mywishlist, R.id.nav_chat,R.id.nav_history,R.id.nav_settings,R.id.nav_logout)
+//                .setDrawerLayout(drawer)
+//                .build();
+//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+//        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+//        NavigationUI.setupWithNavController(navigationView, navController);
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -93,18 +111,11 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.main_search_icon:
-
-                //Toast.makeText(HomeActivity.this, "You selected search", Toast.LENGTH_SHORT).show();
-              //  SearchFragment searchFragment=new SearchFragment();
-              //  FragmentManager fragmentManager=getSupportFragmentManager();
-                //pink toolbar Hide
-           //     getSupportActionBar().hide();
-             //   fragmentManager.beginTransaction().replace(R.id.nav_host_fragment,searchFragment).commit();
-
+               //Search Fires
 
                 Intent intent = new Intent(this,MainActivity.class);
                 startActivity(intent);
-
+                finish();
                 return true;
             case R.id.main_notification_icon:
 
@@ -119,17 +130,6 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -171,26 +171,111 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
     public void updateNavHeader(){
         NavigationView navigationView = findViewById(R.id.nav_view);
         View headerView=navigationView.getHeaderView(0);
-        TextView navUsername=headerView.findViewById(R.id.user_prof_name);
+        final TextView navUsername=headerView.findViewById(R.id.user_prof_name);
         TextView navEmail=headerView.findViewById(R.id.user_prof_email);
+////Query for name
+         mdatabase.getReference("Users")
+                .child(currentUser.getUid()).child("fullname").addValueEventListener(new ValueEventListener() {
+           ///"BfZ2GPMnf6VVOTtSbWdQJZRIsg32"
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+               //     u_name = dataSnapshot.getValue().toString();
+                //Log.d("AAA",dataSnapshot.getValue().toString());
+                navUsername.setText(dataSnapshot.getValue().toString());
+            }
 
-        navUsername.setText(currentUser.getDisplayName());
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+       // navUsername.setText(u_name);
         navEmail.setText(currentUser.getEmail());
 
     }
 
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        int id = menuItem.getItemId();
+        switch (id){
+            case R.id.nav_home:
+                HomeFragment hf = new HomeFragment();
+                FragmentManager fm = getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.nav_host_fragment,hf).commit();
+                drawer.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.nav_uploadorder:
+                startActivity(new Intent(this,UploadOrderActivity.class));
+                finish();
+                break;
 
-        int id  = menuItem.getItemId();
+            case R.id.nav_logout:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(this, LogSign.class));
+                finish();
+                break;
 
-        if (id == R.id.nav_history) {
-            startActivity(new Intent(this,LogSign.class));
+            case R.id.nav_chat:
+                ChatFragment chatFragment=new ChatFragment();
+                FragmentManager fragmentManager=getSupportFragmentManager();
+                getSupportActionBar().setTitle("Chat");
+                //pink toolbar Hide
+                //getSupportActionBar().hide();
+                fragmentManager.beginTransaction().replace(R.id.nav_host_fragment,chatFragment).commit();
+                drawer.closeDrawer(GravityCompat.START);
+                break;
+
+            case R.id.nav_history:
+                HistoryFragment historyFragment=new HistoryFragment();
+                FragmentManager fragmentManager3=getSupportFragmentManager();
+                getDrawerToggleDelegate();
+                getSupportActionBar().setTitle("History");
+                //pink toolbar Hide
+                //getSupportActionBar().hide();
+                fragmentManager3.beginTransaction().replace(R.id.nav_host_fragment,historyFragment).commit();
+                drawer.closeDrawer(GravityCompat.START);
+                break;
+
+            case R.id.nav_mywishlist:
+                MyWishlistFragment myWishlistFragment=new MyWishlistFragment();
+                FragmentManager fragmentManager1=getSupportFragmentManager();
+                getDrawerToggleDelegate();
+                getSupportActionBar().setTitle("My WishList");
+                //pink toolbar Hide
+                //getSupportActionBar().hide();
+                fragmentManager1.beginTransaction().replace(R.id.nav_host_fragment,myWishlistFragment).commit();
+                drawer.closeDrawer(GravityCompat.START);
+                break;
+
+            case R.id.nav_myorder:
+                MyOrderBidsFragment myOrderBidsFragment=new MyOrderBidsFragment();
+                FragmentManager fragmentManager2=getSupportFragmentManager();
+                getDrawerToggleDelegate();
+                getSupportActionBar().setTitle("My OrderBids");
+                //pink toolbar Hide
+                //getSupportActionBar().hide();
+                fragmentManager2.beginTransaction().replace(R.id.nav_host_fragment,myOrderBidsFragment).commit();
+                drawer.closeDrawer(GravityCompat.START);
+                break;
+
+
+            case R.id.nav_settings:
+                ProfileFragment profileFragment=new ProfileFragment();
+                FragmentManager fragmentManager4=getSupportFragmentManager();
+                getDrawerToggleDelegate();
+                getSupportActionBar().setTitle("Profile");
+                //pink toolbar Hide
+                //getSupportActionBar().hide();
+                fragmentManager4.beginTransaction().replace(R.id.nav_host_fragment,profileFragment).commit();
+                drawer.closeDrawer(GravityCompat.START);
+                break;
+
+
         }
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
 
+
+
+        return false;
     }
 }

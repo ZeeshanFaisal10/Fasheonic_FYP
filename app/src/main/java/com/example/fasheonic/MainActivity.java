@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fasheonic.Model.User;
 import com.example.fasheonic.ui.home.HomeFragment;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -65,9 +64,10 @@ public class MainActivity extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (searchView.getQuery().equals("")){
-                    mUsers.clear();
-                }
+                /////Removed bcoz of Searchview was crashing application
+//                if (searchView.getQuery().equals("") || searchView.getQuery().equals(null)){
+//                    mUsers.clear();
+//                }
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     User user = snapshot.getValue(User.class);
@@ -119,7 +119,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        Intent intent = new Intent(MainActivity.this,HomeActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
     private void searchUser(String s){
         Query query= FirebaseDatabase.getInstance().getReference("Users").orderByChild("username")

@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     Button btn_login;
     TextView forget_pass;
+    ImageView backtosignup;
     EditText user_email;
     EditText user_pass;
     ProgressDialog pd;
@@ -39,14 +41,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         forget_pass = findViewById(R.id.forgotpass_u);
         btn_login = findViewById(R.id.login_btn);
+        backtosignup=findViewById(R.id.backtosignup);
         user_email = findViewById(R.id.email_u);
         user_pass = findViewById(R.id.password1);
         mAuth = FirebaseAuth.getInstance();
 
         btn_login.setOnClickListener(this);
         forget_pass.setOnClickListener(this);
+        backtosignup.setOnClickListener(this);
 
     }
+
+
+
+
     public void LoginUser() {
         pd=new ProgressDialog(LoginActivity.this);
         pd.setMessage("Please Wait...");
@@ -116,6 +124,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Intent intent=new Intent(LoginActivity.this,ForgetActivity.class);
             startActivity(intent);
             //Toast.makeText(this,"Check your mail for Recovery link!",Toast.LENGTH_SHORT).show();
+        }
+
+        if(view==backtosignup){
+            Intent intent=new Intent(LoginActivity.this,LogSign.class);
+            startActivity(intent);
+
         }
     }
 
